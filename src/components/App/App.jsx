@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 // import { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import ShowImages from '../GalleryList/galleryList'
 
 function App() {
+  // variables and states
   const [imageList, setImageList] = useState([]); //set as array
 
   // this will get the previously loaded images on page load
   useEffect(() => {
-    console.log('in the useEffect');
+    // console.log('in the useEffect');
     getImages();
   }, []);
-
-
 
   // all my function declarations
   // this will get the data
@@ -24,7 +24,6 @@ function App() {
       url: '/gallery'
     }).then(res => {
       // use the data from the response
-      console.log(res.data);
       // set the img list with the data
       setImageList(res.data);
     }).catch(err => {
@@ -34,22 +33,26 @@ function App() {
 
 
 
-  function ShowImages () {
-    // loop through and render on page
-    console.log('in show images: ', imageList);
-   return ( 
-     <div>
-    {imageList.map((img, index) => {
-      return (
-        <div key={img.id} className='pic-btn'>
-        <img className='pic-size' src= {img.path} />
-        <p>{img.likes} Likes</p>
-        <button id={img.id}className='like-btn' onClick={likeBtnClick}>LIKE</button>
-        </div>
-      )
-    })}
-    </div>
-   )
+  // const ShowImages = function () {
+  //   // loop through and render on page
+  //   // console.log('in show images: ', imageList);
+  //  return ( 
+  //    <div>
+  //   {imageList.map((img, index) => {
+  //     return (
+  //       <div key={img.id} className='pic-btn'>
+  //       <img className='pic-size' src= {img.path} onClick={imgClicked} />
+  //       <p>{img.likes} Likes</p>
+  //       <button id={img.id}className='like-btn' onClick={likeBtnClick}>LIKE</button>
+  //       </div>
+  //     )
+  //   })}
+  //   </div>
+  //  )
+  // }
+
+  const imgClicked = function () {
+    console.log('the image is clicked');
   }
 
   const likeBtnClick = function (e) {
@@ -60,7 +63,7 @@ function App() {
       url:`/gallery/like/${clickedPicId}`,
     }).then(res => {
       // re-render the picture
-      console.log('put res: ', res);
+      // console.log('put res: ', res);
       getImages();
 
     }).catch(err => console.log(err)); // end put
@@ -80,7 +83,7 @@ function App() {
         </header>
         <p>Gallery goes here</p>
 
-        <ShowImages />
+        <ShowImages imageList={imageList} imgClicked={imgClicked} likeBtnClick={likeBtnClick}/>
 
         
         {/* <img src="images/goat_small.jpg"/> */}
