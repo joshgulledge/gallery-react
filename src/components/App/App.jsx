@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// import { useEffect } from 'react';
 import './App.css';
 
 function App() {
+
+  // all my function declarations
+  const getImages = function () {
+    console.log('in get images');
+    
+  }
+
+  // this will get the previously loaded images on page load
+  useEffect(() => {
+    console.log('in the useEffect');
+    getImages();
+  });
+
+
     return (
       <div className="App">
         <header className="App-header">
