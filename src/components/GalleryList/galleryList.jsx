@@ -1,6 +1,6 @@
 import ImageItem from "../GalleryItem/galleryItem";
 
-const ShowImages = function ({imageList, likeBtnClick }) {
+const GalleryList = function ({imageList, likeBtnClick }) {
   // loop through and render on page
   // console.log('in show images: ', imageList);
  return ( 
@@ -16,4 +16,4 @@ const ShowImages = function ({imageList, likeBtnClick }) {
  )
 }
 
-export default ShowImages;
+export default GalleryList;
