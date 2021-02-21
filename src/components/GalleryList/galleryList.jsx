@@ -1,6 +1,6 @@
 import ImageItem from "../GalleryItem/galleryItem";
 
-const GalleryList = function ({imageList, likeBtnClick }) {
+const GalleryList = function ({imageList, likeBtnClick, deleteImage }) {
   // loop through and render on page
   // console.log('in show images: ', imageList);
  return ( 
@@ -10,6 +10,7 @@ const GalleryList = function ({imageList, likeBtnClick }) {
     <ImageItem key={img.id} 
     img={img} 
     likeBtnClick={likeBtnClick}
+    deleteImage={deleteImage}
     />
   )}
   </div>

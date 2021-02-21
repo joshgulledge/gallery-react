@@ -71,6 +71,21 @@ function App() {
     setNewPhotoDescription('');
   } // end addPhoto
 
+  const deleteImage = function (e) {
+    // get image id
+    const imageId = e.target.id;
+
+    // send the axios delete 
+    axios({
+      method: 'DELETE',
+      url:`/gallery/deleteImage/${imageId}`
+    }).then(res => {
+      console.log(res);
+      // render images on page
+      getImages();
+    }).catch(err => console.log(err));
+  } //end deleteImage
+
 
 
     return (
@@ -81,7 +96,7 @@ function App() {
         <p>Gallery goes here</p>
 
         <GalleryList imageList={imageList} 
-        likeBtnClick={likeBtnClick}
+        likeBtnClick={likeBtnClick} deleteImage={deleteImage}
         />
 
         <GalleryForm addPhoto={addPhoto} newPhotoDescription={newPhotoDescription} setNewPhotoDescription={setNewPhotoDescription} newPhotoURL={newPhotoURL} setNewPhotoURL={setNewPhotoURL} />
