@@ -1,3 +1,7 @@
+body {
+  background-color: dimgrey;
+}
+
 .App {
   text-align: center;
 }
@@ -19,7 +23,7 @@
   margin: 15px;
 }
 
-.pic-btn {
+.pic-par {
   display: inline-block;
 }
 

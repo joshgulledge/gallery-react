@@ -16,7 +16,7 @@ const ImageItem = function ({img, likeBtnClick, deleteImage}) {
   
 
   return (
-    <div className='pic-btn'>
+    <div className='pic-par'>
 
       {/* changes from pic to p, both with a click listener */}
       {pictureClicked ? <div><p className='words' onClick={imgClicked}>{img.description}</p> <button id={img.id} onClick={deleteImage}>Delete Image</button></div> : <img className='pic-size' src= {img.path} onClick={imgClicked} /> }
