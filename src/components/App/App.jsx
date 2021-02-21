@@ -50,9 +50,13 @@ function App() {
 
   const addPhoto = function (e) {
     e.preventDefault();
-    console.log('add photo activated');
-    console.log('desc', newPhotoDescription);
-    console.log('url', newPhotoURL);
+    // this will post the image on the db
+
+  //   axios({
+  //     method: "POST",
+  //     url: '/gallery/addimage'
+  //   })
+
   }
 
 

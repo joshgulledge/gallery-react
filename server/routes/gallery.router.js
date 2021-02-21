@@ -54,4 +54,32 @@ ORDER BY "id" ASC;`
     })
 }); // END GET Route
 
+router.post('/addImage', (req, res) => {
+  // add the sql text
+  const newPhoto = [req.body.path, req.body.description]
+
+  const SQLtext = `
+  INSERT INTO "pictures" 
+  ("path", "description", "likes")
+  VALUES 
+  ($1, $2, 0)`;
+
+  // do the query, with then and catch
+  pool.query(SQLtext, newPhoto).then(dbResults => {
+    console.log(dbResults);
+    res.sendStatus(200);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500)
+  });
+})
+
+/*
+data should look like this
+{
+  path: url info
+  description: info and such
+}
+*/
+
 module.exports = router;
