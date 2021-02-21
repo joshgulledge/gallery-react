@@ -50,14 +50,26 @@ function App() {
 
   const addPhoto = function (e) {
     e.preventDefault();
+
     // this will post the image on the db
+    axios({
+      method: "POST",
+      url: '/gallery/addImage',
+      data: {
+        path: newPhotoURL,
+        description: newPhotoDescription
+      }
+    }).then(res => {
+      // console.log(res);
+      // re render with added image
+      getImages()
+    }).catch(err => console.log(err));
+    // end the post
 
-  //   axios({
-  //     method: "POST",
-  //     url: '/gallery/addimage'
-  //   })
-
-  }
+    // clear the inputs
+    setNewPhotoURL('');
+    setNewPhotoDescription('');
+  } // end addPhoto
 
 
 

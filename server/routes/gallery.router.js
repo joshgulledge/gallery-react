@@ -63,10 +63,11 @@ router.post('/addImage', (req, res) => {
   ("path", "description", "likes")
   VALUES 
   ($1, $2, 0)`;
+  // ^ image starts with 0 likes
 
   // do the query, with then and catch
   pool.query(SQLtext, newPhoto).then(dbResults => {
-    console.log(dbResults);
+    // console.log(dbResults);
     res.sendStatus(200);
   }).catch(err => {
     console.log(err);
