@@ -40,10 +40,7 @@ function App() {
     // this will 'PUT' an added like in data
     axios({
       method:'PUT',
-      url:`/gallery/like/${clickedPicId}`,
-      data: {
-
-      }
+      url:`/gallery/like/${clickedPicId}`
     }).then(res => {
       // re-render the picture
       // console.log('put res: ', res);
