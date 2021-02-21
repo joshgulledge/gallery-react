@@ -15,7 +15,7 @@ const pool = new Pool({
 
 // set up listener on pool for troubleshooting
 pool.on('connect', () => 
-  console.log('Connected to the database:', pool.database)
+  console.log('Connected to the database:')
 );
 
 pool.on('error', (err) => console.log(err));

@@ -41,6 +41,9 @@ function App() {
     axios({
       method:'PUT',
       url:`/gallery/like/${clickedPicId}`,
+      data: {
+
+      }
     }).then(res => {
       // re-render the picture
       // console.log('put res: ', res);

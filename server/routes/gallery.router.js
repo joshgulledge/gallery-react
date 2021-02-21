@@ -9,15 +9,32 @@ const pool = require('../modules/pool.js');
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    console.log(req.params);
+    console.log('req.params: ', req.params);
     const galleryId = req.params.id;
-    for(const galleryItem of galleryItems) {
-      console.log(galleryItem.id, galleryId);
-        if(galleryItem.id == galleryId) {
-            galleryItem.likes += 1;
-        }
-    }
-    res.sendStatus(200);
+            //  ---- BASE MODE ----
+    // for(const galleryItem of galleryItems) {
+    //   console.log(galleryItem.id, galleryId);
+    //     if(galleryItem.id == galleryId) {
+    //       console.log('item likes before', galleryItem.likes);
+    //         galleryItem.likes += 1;
+    //         console.log('item likes after', galleryItem.likes);
+        // }
+    // }
+         // ---- STRETCH GOALS ----
+    // use $ to avoid injections
+    // set the SQL code
+    const SQLtext = `UPDATE "pictures"
+    SET "likes" = "likes" + 1
+    WHERE "id" = $1;`
+
+    pool.query(SQLtext, [galleryId]).then(dbResults => {
+      // console.log('dbResults are: ', dbResults);
+      res.sendStatus(200);
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+
 }); // END PUT Route
 
 // GET Route
@@ -25,10 +42,11 @@ router.get('/', (req, res) => {
     // res.send(galleryItems);
     // use pool to get data from database
     // declare a SQLtext 
-    const SQLtext = `SELECT * FROM "pictures";`
+    const SQLtext = `SELECT * FROM "pictures"
+ORDER BY "id" ASC;`
 
     pool.query(SQLtext).then((dbResults) => {
-      console.log('dbResults', dbResults);
+      // console.log('dbResults', dbResults);
       res.send(dbResults.rows)
     }).catch(err => {
       console.log(err);
