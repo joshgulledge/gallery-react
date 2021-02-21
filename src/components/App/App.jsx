@@ -2,13 +2,14 @@ import React, { useState, useEffect, useToggle } from 'react';
 // import { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import ShowImages from '../GalleryList/galleryList'
+import GalleryList from '../GalleryList/galleryList'
+import GalleryForm from '../GalleryForm/galleryForm'
 
 function App() {
   // variables and states
   const [imageList, setImageList] = useState([]); //set as array
-  
-
+  const [newPhotoDescription, setNewPhotoDescription] =useState('');
+  const [newPhotoURL, setNewPhotoURL] = useState('');
   
   // this will get the previously loaded images on page load
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
   }, []);
 
   // ----- all my function declarations -----
+
   // this will get the data
   const getImages = function () {
     // the axios "GET" call
@@ -46,11 +48,29 @@ function App() {
     }).catch(err => console.log(err)); // end put
   } // end likeBtnClick
 
+  const addPhoto = function (e) {
+    e.preventDefault();
 
+    // this will post the image on the db
+    axios({
+      method: "POST",
+      url: '/gallery/addImage',
+      data: {
+        path: newPhotoURL,
+        description: newPhotoDescription
+      }
+    }).then(res => {
+      // console.log(res);
+      // re render with added image
+      getImages()
+    }).catch(err => console.log(err));
+    // end the post
 
-  
+    // clear the inputs
+    setNewPhotoURL('');
+    setNewPhotoDescription('');
+  } // end addPhoto
 
-  // this will be my variables and useStates
 
 
     return (
@@ -60,9 +80,11 @@ function App() {
         </header>
         <p>Gallery goes here</p>
 
-        <ShowImages imageList={imageList} 
+        <GalleryList imageList={imageList} 
         likeBtnClick={likeBtnClick}
         />
+
+        <GalleryForm addPhoto={addPhoto} newPhotoDescription={newPhotoDescription} setNewPhotoDescription={setNewPhotoDescription} newPhotoURL={newPhotoURL} setNewPhotoURL={setNewPhotoURL} />
 
         
         {/* <img src="images/goat_small.jpg"/> */}
