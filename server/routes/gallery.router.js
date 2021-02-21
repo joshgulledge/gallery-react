@@ -73,14 +73,33 @@ router.post('/addImage', (req, res) => {
     console.log(err);
     res.sendStatus(500)
   });
-})
+}) // end post
 
 /*
-data should look like this
+data should look like this when comes in to be posted
 {
   path: url info
   description: info and such
 }
 */
+
+
+router.delete('/deleteImage/:id', (req, res) => {
+  // get the id of the item to be deleted
+  const imageId = req.params.id;
+  // make the sql code
+  const SQLtext = `
+  DELETE FROM "pictures"
+  WHERE "id" = $1;
+  `;
+  // pool query with $ to prevent injections
+  pool.query(SQLtext, [imageId]).then(dbResults => {
+    console.log(dbResults);
+    res.sendStatus(200);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;
