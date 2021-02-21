@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const galleryItems = require('../modules/gallery.data');
+// bring in pool for stretch goals
+const pool = require('../modules/pool.js');
+
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
@@ -19,7 +22,18 @@ router.put('/like/:id', (req, res) => {
 
 // GET Route
 router.get('/', (req, res) => {
-    res.send(galleryItems);
+    // res.send(galleryItems);
+    // use pool to get data from database
+    // declare a SQLtext 
+    const SQLtext = `SELECT * FROM "pictures";`
+
+    pool.query(SQLtext).then((dbResults) => {
+      console.log('dbResults', dbResults);
+      res.send(dbResults.rows)
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
 }); // END GET Route
 
 module.exports = router;
