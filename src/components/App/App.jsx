@@ -16,7 +16,7 @@ function App() {
     getImages();
   }, []);
 
-  // all my function declarations
+  // ----- all my function declarations -----
   // this will get the data
   const getImages = function () {
     // the axios "GET" call
@@ -31,9 +31,6 @@ function App() {
       console.log(err);
     }); // end axios get
   }; // end the getImages function
-
-
-  
 
   const likeBtnClick = function (e) {
     let clickedPicId = e.target.id;

@@ -9,7 +9,7 @@ const pool = require('../modules/pool.js');
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    console.log('req.params: ', req.params);
+    // console.log('req.params: ', req.params);
     const galleryId = req.params.id;
             //  ---- BASE MODE ----
     // for(const galleryItem of galleryItems) {
