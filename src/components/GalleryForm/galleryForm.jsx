@@ -8,12 +8,18 @@ const GalleryForm = function ({addPhoto, newPhotoDescription, setNewPhotoDescrip
     <div className="new-photo-input">
       <h2> Add a New Photo</h2>
       <form className="new-photo-form" onSubmit={addPhoto}>
-        <input type="text" placeholder="Enter a photo description" value={newPhotoDescription} id="photo-description-input" onChange={event => setNewPhotoDescription(event.target.value)}/>
+
+        
+        <input type="text" placeholder="Enter a photo description" value={newPhotoDescription} id="photo-description-input inputSuccess" onChange={event => setNewPhotoDescription(event.target.value)}/>
+
         <input type="text" placeholder="Enter the photo url" id="photo-path" value={newPhotoURL} onChange={event => setNewPhotoURL(event.target.value)}/>
-        <button type="submit">Submit new photo</button>
+
+        <div>
+        <button type="submit" id="submit-btn">Submit new photo</button>
+        </div>
       </form>
     </div>
   )
-}
+};
 
 export default GalleryForm;

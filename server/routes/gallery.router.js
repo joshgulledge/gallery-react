@@ -9,7 +9,7 @@ const pool = require('../modules/pool.js');
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    // console.log('req.params: ', req.params);
+    console.log('req.params: ', req.params);
     const galleryId = req.params.id;
             //  ---- BASE MODE ----
     // for(const galleryItem of galleryItems) {
@@ -28,7 +28,7 @@ router.put('/like/:id', (req, res) => {
     WHERE "id" = $1;`
 
     pool.query(SQLtext, [galleryId]).then(dbResults => {
-      // console.log('dbResults are: ', dbResults);
+      console.log('dbResults are: ', dbResults);
       res.sendStatus(200);
     }).catch(err => {
       console.log(err);

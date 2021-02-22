@@ -1,13 +1,17 @@
 .new-photo-input {
   display: inline-block;
   margin: 25px;
-  width: 80%;
+  width: 50%;
 }
 
 
 input[type=text] {
   border: 2px solid red;
   border-radius: 4px;
-  width: 35%;
-  height: 35px;
+  width: 28%;
+  height: 20px;
 }
+
+/* .submit-btn {
+  display: block;
+} */

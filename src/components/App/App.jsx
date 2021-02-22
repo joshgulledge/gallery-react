@@ -42,7 +42,7 @@ function App() {
       url:`/gallery/like/${clickedPicId}`
     }).then(res => {
       // re-render the picture
-      // console.log('put res: ', res);
+      console.log('put res: ', res);
       getImages();
 
     }).catch(err => console.log(err)); // end put
